@@ -10,6 +10,7 @@
 		26A49EF26F3F3FFAC4EE148F /* Pods_ColorNote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 425D642FC3D8DAF39523580D /* Pods_ColorNote.framework */; };
 		AF254AAF1DCF983F00DA39B3 /* singleColorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF254AAE1DCF983F00DA39B3 /* singleColorDetailViewController.swift */; };
 		AF330F611DC1DA5300F64F8A /* ColorPalettesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF330F601DC1DA5300F64F8A /* ColorPalettesView.swift */; };
+		AF6EBB8D1DE1DA6900171978 /* ImageColorExtracter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6EBB8C1DE1DA6900171978 /* ImageColorExtracter.swift */; };
 		AF9C0EA31DC0A80900C6B129 /* BasicStringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9C0EA21DC0A80900C6B129 /* BasicStringOperation.swift */; };
 		AFBD7E2B1DBA59B800557BD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBD7E2A1DBA59B800557BD4 /* AppDelegate.swift */; };
 		AFBD7E2D1DBA59B800557BD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBD7E2C1DBA59B800557BD4 /* ViewController.swift */; };
@@ -47,6 +48,7 @@
 		AF0A8F041DCEF8860078113A /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		AF254AAE1DCF983F00DA39B3 /* singleColorDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = singleColorDetailViewController.swift; sourceTree = "<group>"; };
 		AF330F601DC1DA5300F64F8A /* ColorPalettesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalettesView.swift; sourceTree = "<group>"; };
+		AF6EBB8C1DE1DA6900171978 /* ImageColorExtracter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageColorExtracter.swift; sourceTree = "<group>"; };
 		AF9C0EA21DC0A80900C6B129 /* BasicStringOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicStringOperation.swift; sourceTree = "<group>"; };
 		AFBD7E271DBA59B800557BD4 /* ColorNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFBD7E2A1DBA59B800557BD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +152,7 @@
 				AFEEF2681DD1CA6800EF8455 /* CustomBar.swift */,
 				AFEEF26A1DD1CAFC00EF8455 /* CollectionViewController.swift */,
 				AFEEF26C1DD1D30500EF8455 /* MakeViewController.swift */,
+				AF6EBB8C1DE1DA6900171978 /* ImageColorExtracter.swift */,
 			);
 			path = ColorNote;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				AFEEF2691DD1CA6800EF8455 /* CustomBar.swift in Sources */,
 				AFBD7E2D1DBA59B800557BD4 /* ViewController.swift in Sources */,
 				AFEEF26B1DD1CAFC00EF8455 /* CollectionViewController.swift in Sources */,
+				AF6EBB8D1DE1DA6900171978 /* ImageColorExtracter.swift in Sources */,
 				AF254AAF1DCF983F00DA39B3 /* singleColorDetailViewController.swift in Sources */,
 				AFBD7E2B1DBA59B800557BD4 /* AppDelegate.swift in Sources */,
 				AF9C0EA31DC0A80900C6B129 /* BasicStringOperation.swift in Sources */,
