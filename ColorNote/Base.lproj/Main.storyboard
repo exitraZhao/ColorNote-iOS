@@ -597,8 +597,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="tYS-Cx-NH7" kind="relationship" relationship="viewControllers" id="MiS-gY-92X"/>
-                        <segue destination="V93-pu-hJZ" kind="relationship" relationship="viewControllers" id="8XM-U3-LSJ"/>
                         <segue destination="LpZ-x5-vGx" kind="relationship" relationship="viewControllers" id="drG-wP-t7Q"/>
+                        <segue destination="V93-pu-hJZ" kind="relationship" relationship="viewControllers" id="8XM-U3-LSJ"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OMx-1Q-Bqm" userLabel="First Responder" sceneMemberID="firstResponder"/>
