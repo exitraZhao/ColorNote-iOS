@@ -12,6 +12,8 @@
 		AF330F611DC1DA5300F64F8A /* ColorPalettesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF330F601DC1DA5300F64F8A /* ColorPalettesView.swift */; };
 		AF6EBB8D1DE1DA6900171978 /* ImageColorExtracter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6EBB8C1DE1DA6900171978 /* ImageColorExtracter.swift */; };
 		AF9C0EA31DC0A80900C6B129 /* BasicStringOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9C0EA21DC0A80900C6B129 /* BasicStringOperation.swift */; };
+		AFAD34221DF7F631002D56A1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAD34211DF7F631002D56A1 /* User.swift */; };
+		AFAD34241DF7F649002D56A1 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAD34231DF7F649002D56A1 /* LoginViewController.swift */; };
 		AFBD7E2B1DBA59B800557BD4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBD7E2A1DBA59B800557BD4 /* AppDelegate.swift */; };
 		AFBD7E2D1DBA59B800557BD4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBD7E2C1DBA59B800557BD4 /* ViewController.swift */; };
 		AFBD7E301DBA59B800557BD4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFBD7E2E1DBA59B800557BD4 /* Main.storyboard */; };
@@ -50,6 +52,8 @@
 		AF330F601DC1DA5300F64F8A /* ColorPalettesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPalettesView.swift; sourceTree = "<group>"; };
 		AF6EBB8C1DE1DA6900171978 /* ImageColorExtracter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageColorExtracter.swift; sourceTree = "<group>"; };
 		AF9C0EA21DC0A80900C6B129 /* BasicStringOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicStringOperation.swift; sourceTree = "<group>"; };
+		AFAD34211DF7F631002D56A1 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AFAD34231DF7F649002D56A1 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AFBD7E271DBA59B800557BD4 /* ColorNote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ColorNote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFBD7E2A1DBA59B800557BD4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFBD7E2C1DBA59B800557BD4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -116,6 +120,7 @@
 		AFAD341E1DF7F488002D56A1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				AFAD34231DF7F649002D56A1 /* LoginViewController.swift */,
 				AFEEF2681DD1CA6800EF8455 /* CustomBar.swift */,
 				AFEEF26C1DD1D30500EF8455 /* MakeViewController.swift */,
 				AFEEF26A1DD1CAFC00EF8455 /* CollectionViewController.swift */,
@@ -136,6 +141,7 @@
 		AFAD34201DF7F4AB002D56A1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				AFAD34211DF7F631002D56A1 /* User.swift */,
 				AF9C0EA21DC0A80900C6B129 /* BasicStringOperation.swift */,
 				AF6EBB8C1DE1DA6900171978 /* ImageColorExtracter.swift */,
 			);
@@ -390,6 +396,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFAD34241DF7F649002D56A1 /* LoginViewController.swift in Sources */,
 				AF330F611DC1DA5300F64F8A /* ColorPalettesView.swift in Sources */,
 				AFEEF26D1DD1D30500EF8455 /* MakeViewController.swift in Sources */,
 				AFBD7E331DBA59B800557BD4 /* ColorNote.xcdatamodeld in Sources */,
@@ -400,6 +407,7 @@
 				AF254AAF1DCF983F00DA39B3 /* singleColorDetailViewController.swift in Sources */,
 				AFBD7E2B1DBA59B800557BD4 /* AppDelegate.swift in Sources */,
 				AF9C0EA31DC0A80900C6B129 /* BasicStringOperation.swift in Sources */,
+				AFAD34221DF7F631002D56A1 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
