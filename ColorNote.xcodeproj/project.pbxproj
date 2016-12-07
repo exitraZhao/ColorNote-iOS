@@ -113,6 +113,35 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		AFAD341E1DF7F488002D56A1 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AFEEF2681DD1CA6800EF8455 /* CustomBar.swift */,
+				AFEEF26C1DD1D30500EF8455 /* MakeViewController.swift */,
+				AFEEF26A1DD1CAFC00EF8455 /* CollectionViewController.swift */,
+				AF254AAE1DCF983F00DA39B3 /* singleColorDetailViewController.swift */,
+				AFBD7E2C1DBA59B800557BD4 /* ViewController.swift */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		AFAD341F1DF7F4A6002D56A1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF330F601DC1DA5300F64F8A /* ColorPalettesView.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AFAD34201DF7F4AB002D56A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF9C0EA21DC0A80900C6B129 /* BasicStringOperation.swift */,
+				AF6EBB8C1DE1DA6900171978 /* ImageColorExtracter.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		AFBD7E1E1DBA59B800557BD4 = {
 			isa = PBXGroup;
 			children = (
@@ -138,21 +167,16 @@
 		AFBD7E291DBA59B800557BD4 /* ColorNote */ = {
 			isa = PBXGroup;
 			children = (
+				AFAD34201DF7F4AB002D56A1 /* Model */,
+				AFAD341F1DF7F4A6002D56A1 /* View */,
+				AFAD341E1DF7F488002D56A1 /* ViewController */,
 				AFBD7E2A1DBA59B800557BD4 /* AppDelegate.swift */,
-				AFBD7E2C1DBA59B800557BD4 /* ViewController.swift */,
 				AFBD7E2E1DBA59B800557BD4 /* Main.storyboard */,
 				AFBD7E341DBA59B800557BD4 /* Assets.xcassets */,
 				AFBD7E361DBA59B800557BD4 /* LaunchScreen.storyboard */,
 				AFBD7E391DBA59B800557BD4 /* Info.plist */,
 				AFBD7E311DBA59B800557BD4 /* ColorNote.xcdatamodeld */,
-				AF9C0EA21DC0A80900C6B129 /* BasicStringOperation.swift */,
-				AF330F601DC1DA5300F64F8A /* ColorPalettesView.swift */,
 				AF0A8F041DCEF8860078113A /* MyPlayground.playground */,
-				AF254AAE1DCF983F00DA39B3 /* singleColorDetailViewController.swift */,
-				AFEEF2681DD1CA6800EF8455 /* CustomBar.swift */,
-				AFEEF26A1DD1CAFC00EF8455 /* CollectionViewController.swift */,
-				AFEEF26C1DD1D30500EF8455 /* MakeViewController.swift */,
-				AF6EBB8C1DE1DA6900171978 /* ImageColorExtracter.swift */,
 			);
 			path = ColorNote;
 			sourceTree = "<group>";
@@ -241,7 +265,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "赵一达";
 				TargetAttributes = {
 					AFBD7E261DBA59B800557BD4 = {
@@ -448,6 +472,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -498,6 +523,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -527,6 +553,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D864008CA83A6187BEC1EF4 /* Pods-ColorNote.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = U28QYBRPF7;
 				INFOPLIST_FILE = ColorNote/Info.plist;
@@ -541,6 +568,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9DEE7A8EB0AAB3C61CECDC5 /* Pods-ColorNote.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = U28QYBRPF7;
 				INFOPLIST_FILE = ColorNote/Info.plist;
