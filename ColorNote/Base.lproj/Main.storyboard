@@ -865,7 +865,7 @@
                                     <constraint firstAttribute="trailing" secondItem="wQq-ag-rYS" secondAttribute="trailing" constant="-1" id="yPe-Wz-9DI"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Sign Up For Free" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="OQZ-IF-vMq">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Sign Up For Free" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OQZ-IF-vMq">
                                 <rect key="frame" x="16" y="315" width="112" height="114"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="114" id="PVw-7i-gpe"/>
