@@ -1,9 +1,9 @@
 //
-//  User.swift
-//  TACLeaseApp
+//  BasicStringOperation.swift
+//  ColorNote
 //
-//  Created by 赵一达 on 2016/11/30.
-//  Copyright © 2016年 lirui. All rights reserved.
+//  Created by 赵一达 on 2016/10/26.
+//  Copyright © 2016年 赵一达. All rights reserved.
 //
 
 import Foundation
@@ -15,12 +15,9 @@ class AppUser {
         case Admin
     }
     
-    private static var userInstance:AppUser? = nil
-    
     private var userName:String? = nil
-    private var userType:userTypes = .Normal
     
-    
+    private static var userInstance:AppUser? = nil
     public static func getInstance() -> AppUser{
         if userInstance == nil {
             userInstance = AppUser()
@@ -52,6 +49,8 @@ class AppUser {
     }
     
     func signOut() {
+        
+        self.userName = nil
         
     }
     

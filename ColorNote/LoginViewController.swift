@@ -1,9 +1,9 @@
 //
-//  LoginViewController.swift
-//  TACLeaseApp
+//  BasicStringOperation.swift
+//  ColorNote
 //
-//  Created by 赵一达 on 2016/11/30.
-//  Copyright © 2016年 lirui. All rights reserved.
+//  Created by 赵一达 on 2016/10/26.
+//  Copyright © 2016年 赵一达. All rights reserved.
 //
 
 import Foundation
@@ -17,10 +17,8 @@ import QuartzCore
 class LoginViewController: UIViewController {
     
     let url_login = "http://115.159.35.33:3000/login/app"
-    let requestInstance = Request.getInstance()
     let universalUser = AppUser.getInstance()
     
-    var fieldCheck = Checker()
     
     //MARK: Outlets for UI Elements.
     @IBOutlet weak var usernameField:   UITextField!
@@ -36,14 +34,6 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginButton.isEnabled = false
-        let observerInstance = Observer.init(ifTrue: {() -> Void in
-            self.loginButton.isEnabled = true
-        }, ifFalse: {() -> Void in
-            self.loginButton.isEnabled = false
-        })
-        fieldCheck.observer = observerInstance
-        
         // Notifiying for Changes in the textFields
         usernameField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
         passwordField.addTarget(self, action: #selector(LoginViewController.textFieldDidChange), for: UIControlEvents.editingChanged)
@@ -56,37 +46,11 @@ class LoginViewController: UIViewController {
     
     
     func textFieldDidChange() {
-       fieldCheck.hasBeenTyped(password: usernameField, repassword: passwordField)
     }
     
     func requestForLogin(){
         
-        let dataPara:Dictionary<String,Any> = [
-            "username" : "\(usernameField.text!)",
-            "password" : "\(passwordField.text!)"
-        ]
-        
-        print(dataPara)
-        
-        requestInstance.post(url: url_login, dataPara: dataPara, completion: {(data) -> Void in
-            var dictArray = NSDictionary()
-            
-            do {
-                dictArray = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-              
-            } catch let error as NSError {
-                print(error)
             }
-            if dictArray["success"] == nil {
-                showAlert(title: "ERROR", message: (dictArray["error"] as? String)!, viewController: self)
-            }else{
-                
-                showAlert(title: "SUCCESS", message: (dictArray["success"] as? String)!, viewController: self)
-                self.universalUser.login(userName: self.usernameField.text!)
-                
-            }
-        })
-    }
     
     @IBAction func backgroundPressed(sender: AnyObject) {
         usernameField.resignFirstResponder()
@@ -106,10 +70,6 @@ class LoginViewController: UIViewController {
 class SignUpViewController: UIViewController {
     
     let url_signUp = "http://115.159.35.33:3000/signup/app"
-    let requestInstance = Request.getInstance()
-
-    var fieldCheck = Checker()
-    
     @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var rePasswordField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -125,12 +85,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         
         signUpButton.isEnabled = false
-        let observerInstance = Observer.init(ifTrue: {() -> Void in
-            self.signUpButton.isEnabled = true
-        }, ifFalse: {() -> Void in
-            self.signUpButton.isEnabled = false
-        })
-        fieldCheck.observer = observerInstance
+        
         passwordField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChanged), for: .editingChanged)
         rePasswordField.addTarget(self, action: #selector(SignUpViewController.textFieldDidChanged), for: .editingChanged)
     }
@@ -146,7 +101,6 @@ class SignUpViewController: UIViewController {
     }
     func textFieldDidChanged(){
         print("changed!")
-        fieldCheck.hasBeenTyped(password: passwordField, repassword: rePasswordField)
     }
     func requestForSignUp(){
         
@@ -156,23 +110,7 @@ class SignUpViewController: UIViewController {
             "repassword" : "\(passwordField.text!)"
         ]
         
-        requestInstance.post(url: url_signUp, dataPara: dataPara, completion: {(data) -> Void in
-            var dictArray = NSDictionary()
-            do {
-                dictArray = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.mutableContainers) as! NSDictionary
-                print(dictArray)
-                print(dictArray["success"])
-                
-            } catch let error as NSError {
-                print(error)
-            }
-            if dictArray["success"] == nil {
-                showAlert(title: "ERROR", message: (dictArray["error"] as? String)!, viewController: self)
-            }else{
-                showAlert(title: "SUCCESS", message: (dictArray["success"] as? String)!, viewController: self)
-            }
-            
-        })
+        
     }
 }
 
@@ -186,5 +124,101 @@ public func showAlert(title:String,message:String, viewController:UIViewControll
     
     DispatchQueue.main.async {
         viewController.present(alert, animated: true, completion: nil)
+    }
+}
+
+class UserViewController: UIViewController {
+    
+    let universalUser = AppUser.getInstance()
+    
+    @IBOutlet weak var userName: UILabel!
+    @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signOutButton: UIButton!
+    @IBOutlet weak var SignUpBar: UIView!
+    @IBAction func signUpButtonPressed(_ sender: UIButton) {
+        signUp()
+    }
+    @IBAction func signInButtonPressed(_ sender: UIButton) {
+        signIn()
+    }
+    @IBAction func signOutButtonPressed(_ sender: UIButton) {
+        SignOut()
+    }
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        SignUpBar.layer.cornerRadius = self.SignUpBar.frame.width/2
+        
+        if universalUser.hasBeenLogin() {
+            userName.text = universalUser.getUsername()
+            signInButton.isHidden = true
+        } else {
+            userName.text = "PleaseSignIn"
+            signOutButton.isHidden = true
+        }
+        
+    }
+    
+    func signUp(){
+        let alertSheet = UIAlertController(title: "Sign Up", message: nil, preferredStyle: .alert)
+        alertSheet.addTextField { (textField) in
+            textField.placeholder = "enter your name"
+        }
+        alertSheet.addTextField { (textField) in
+            textField.placeholder = "enter your password"
+        }
+        alertSheet.addAction(UIAlertAction(title: "Sign Up", style: .default, handler: { (alertAction) in
+            
+            // signup request
+            self.dismiss(animated: true, completion: {
+            })
+            
+        }))
+        alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alertAction) in
+            
+        }))
+        self.present(alertSheet, animated: true, completion: nil)
+    }
+    func signIn(){
+        let alertSheet = UIAlertController(title: "Sign In", message: nil, preferredStyle: .alert)
+        alertSheet.addTextField { (textField) in
+            textField.placeholder = "enter your name"
+        }
+        alertSheet.addTextField { (textField) in
+            textField.placeholder = "enter your password"
+            textField.isSecureTextEntry = true
+        }
+        alertSheet.addAction(UIAlertAction(title: "Sign In", style: .default, handler: { (alertAction) in
+            
+            // signup request
+            self.viewDidLoad()
+            self.dismiss(animated: true, completion: {
+            })
+            
+        }))
+        alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alertAction) in
+            
+        }))
+        self.present(alertSheet, animated: true, completion: nil)
+
+    }
+    func SignOut(){
+        let alertSheet = UIAlertController(title: "Sign Out", message: "Really want to Sign Out?", preferredStyle: .alert)
+        
+        alertSheet.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (alertAction) in
+            
+            self.universalUser.signOut()
+            self.viewDidLoad()
+            self.dismiss(animated: true, completion: {
+            })
+            
+        }))
+        alertSheet.addAction(UIAlertAction(title: "No", style: .cancel, handler: { (alertAction) in
+            
+        }))
+        self.present(alertSheet, animated: true, completion: nil)
     }
 }
