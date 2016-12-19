@@ -170,11 +170,28 @@ class UserViewController: UIViewController {
         alertSheet.addTextField { (textField) in
             textField.placeholder = "enter your password"
         }
+        alertSheet.addTextField { (textField) in
+            textField.placeholder = "enter your password again"
+        }
+        
         alertSheet.addAction(UIAlertAction(title: "Sign Up", style: .default, handler: { (alertAction) in
             
-            // signup request
-            self.dismiss(animated: true, completion: {
-            })
+            if alertSheet.textFields?[1].text == alertSheet.textFields?[2].text {
+                // signup request
+                self.dismiss(animated: true, completion: {
+                })
+            }else {
+                let passwordDifferentAlert = UIAlertController(title: "pass word different", message: "please enter your password again.", preferredStyle: .alert)
+                passwordDifferentAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (alertAction) in
+                    passwordDifferentAlert.dismiss(animated: true, completion: {
+                        alertSheet.textFields?[0].text = ""
+                        alertSheet.textFields?[1].text = ""
+//                        self.dismiss(animated: true, completion: nil)
+                    })
+                }))
+                
+                self.present(passwordDifferentAlert, animated: true, completion: nil)
+            }
             
         }))
         alertSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (alertAction) in
@@ -193,7 +210,7 @@ class UserViewController: UIViewController {
         }
         alertSheet.addAction(UIAlertAction(title: "Sign In", style: .default, handler: { (alertAction) in
             
-            // signup request
+            // signin request
             self.viewDidLoad()
             self.dismiss(animated: true, completion: {
             })
