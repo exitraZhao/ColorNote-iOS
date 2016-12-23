@@ -91,7 +91,7 @@
             </objects>
             <point key="canvasLocation" x="2884" y="969"/>
         </scene>
-        <!--Palettes-->
+        <!--Palettes Table View Controller-->
         <scene sceneID="ehL-gS-cFT">
             <objects>
                 <viewController id="oqe-dH-7oa" customClass="PalettesTableViewController" customModule="ColorNote" customModuleProvider="target" sceneMemberID="viewController">
@@ -234,7 +234,7 @@
                             <constraint firstAttribute="bottom" secondItem="35c-7A-cnQ" secondAttribute="bottom" id="sAu-YR-FES"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Palettes" id="DkY-m4-SZh">
+                    <navigationItem key="navigationItem" id="DkY-m4-SZh">
                         <barButtonItem key="backBarButtonItem" title=" " id="Zbb-N8-6a0"/>
                     </navigationItem>
                     <connections>
@@ -495,22 +495,40 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwx-Xa-5K2">
-                                <rect key="frame" x="93" y="258" width="190" height="30"/>
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Search  Palettes" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kji-8S-ocf">
+                                <rect key="frame" x="300" y="236" width="75" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kwx-Xa-5K2">
+                                <rect key="frame" x="300" y="225" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="19"/>
-                                <state key="normal" title="Search for Palettes">
+                                <state key="normal">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="oqe-dH-7oa" kind="show" identifier="showPalettes" id="2l0-S7-kCM"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYC-mG-kvQ">
-                                <rect key="frame" x="95" y="303" width="190" height="30"/>
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" editable="NO" text="Search Patterns" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y3D-rR-25s">
+                                <rect key="frame" x="226" y="236" width="75" height="64"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter-Bold" family="American Typewriter" pointSize="19"/>
-                                <state key="normal" title="Search for Patterns">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="fill" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KYC-mG-kvQ">
+                                <rect key="frame" x="226" y="225" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <state key="normal">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
@@ -529,16 +547,24 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Tap to Search" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Z5F-Y6-Waa">
-                                <rect key="frame" x="114" y="154" width="153" height="30"/>
+                                <rect key="frame" x="44" y="325" width="286" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="textColor" white="0.37431985428746867" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="24"/>
+                                <color key="textColor" red="0.85556640625000002" green="0.85556640625000002" blue="0.85556640625000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="29"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <action selector="textfFieldTouchOutside:" destination="DUC-6O-cFC" eventType="touchUpOutside" id="q5c-VT-F4d"/>
                                 </connections>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rjo-JW-2N0">
+                                <rect key="frame" x="75" y="225" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="hot"/>
+                                <connections>
+                                    <segue destination="oqe-dH-7oa" kind="show" identifier="showHotPalettes" id="SNg-K7-B6F"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -990,10 +1016,12 @@
         <image name="browse" width="30" height="30"/>
         <image name="button" width="28" height="64"/>
         <image name="collect" width="30" height="30"/>
+        <image name="hot" width="75" height="75"/>
         <image name="iPhone 67 – 2" width="187" height="333"/>
         <image name="make" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="SNg-K7-B6F"/>
         <segue reference="W5f-Q5-wOC"/>
     </inferredMetricsTieBreakers>
 </document>

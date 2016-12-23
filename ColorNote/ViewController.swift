@@ -456,6 +456,7 @@ class PatternsDetailTableViewController: UIViewController,UITableViewDelegate,UI
 class SearchViewController: UIViewController,UITextFieldDelegate {
     var urlForPalette = String()
     var urlForPattern = String()
+    var urlForHotPalette = String()
     @IBOutlet weak internal var textField: UITextField!
     @IBAction func textfFieldTouchOutside(_ sender: Any) {
         textField.resignFirstResponder()
@@ -472,16 +473,24 @@ class SearchViewController: UIViewController,UITextFieldDelegate {
     func getUrl() {
         urlForPalette = "http://www.colourlovers.com/api/palettes?showPaletteWidths=1&format=json&numResults=20&keywordExact=1&keywords="
         urlForPattern = "http://www.colourlovers.com/api/patterns?format=xml&numResults=20&keywordExact=1&keywords="
+        urlForHotPalette = "等待小伙伴们啊！"
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPalettes"{
             if let destinationView = segue.destination as? PalettesTableViewController {
                 destinationView.url = self.urlForPalette + textField.text!
+                destinationView.title = "Palettes"
             }
         }
         else if segue.identifier == "showPatterns"{
             if let destinationView = segue.destination as? PatternsTableViewController {
                 destinationView.url = self.urlForPattern + textField.text!
+            }
+        }
+        else if segue.identifier == "showHotPalettes"{
+            if let destinationView = segue.destination as? PalettesTableViewController {
+                destinationView.url = self.urlForHotPalette
+                destinationView.title = "Hot"
             }
         }
         
