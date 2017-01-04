@@ -124,6 +124,8 @@ class testViewController: UIViewController {
 class PalettesTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var url = String()
     var json:JSON = []
+    var hotJson:[JSON] = []
+    var isHotPage = false
     @IBOutlet weak internal var palettesTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -143,19 +145,50 @@ class PalettesTableViewController: UIViewController, UITableViewDelegate, UITabl
         loadingIndicator.startAnimating()
         
         alert.show();
-        Alamofire.request(url, method: .get ).validate().responseJSON { response in
-            
-            switch response.result {
-            case .success(let value):
-                self.json = JSON(value)
-               
-            case .failure(let error):
-                showAlert()
-                print(error)
+        
+        if isHotPage {
+            let headers = [
+                "X-LC-Id": "sXvWPWGXozgs0abUMsuL8143-gzGzoHsz",
+                "X-LC-Key": "5vRTX6YB4wD3c06N569NIsh9"
+            ]
+            Alamofire.request(url, method: .get, headers: headers).responseJSON {response in
+                
+                switch response.result {
+                case .success(let value):
+                    var json = JSON(value)
+                    print(json)
+                    for i in 0..<json["result"].arrayValue.count {
+                        let str = json["result"][i]["JSON"].stringValue
+                        let data = str.data(using: String.Encoding.utf8)
+                        let strJsoned = JSON.init(data: data!)
+                        self.hotJson.append(strJsoned)
+                        
+                    }
+                case .failure(let error):
+                    print("zai xia you yi ju mmp bzdjbdj!!!!!!!!!!")
+                    print(error)
+                    showAlert()
+                }
+                loadingIndicator.stopAnimating()
+                alert.dismiss(withClickedButtonIndex: 0, animated: true)
+                self.palettesTableView.reloadData()
             }
-            loadingIndicator.stopAnimating()
-            alert.dismiss(withClickedButtonIndex: 0, animated: true)
-            self.palettesTableView.reloadData()
+
+        }else{
+            Alamofire.request(url, method: .get ).validate().responseJSON { response in
+                
+                switch response.result {
+                case .success(let value):
+                    self.json = JSON(value)
+                    
+                case .failure(let error):
+                    showAlert()
+                    print(error)
+                }
+                loadingIndicator.stopAnimating()
+                alert.dismiss(withClickedButtonIndex: 0, animated: true)
+                self.palettesTableView.reloadData()
+            }
         }
         
         
@@ -166,18 +199,33 @@ class PalettesTableViewController: UIViewController, UITableViewDelegate, UITabl
         print("build tablecell")
         if let cell = tableView.dequeueReusableCell(withIdentifier: "paletteCell", for: indexPath) as? PalettesTableViewCell {
             
-            cell.palettesLabel.text = String(describing:self.json[indexPath.row]["title"])
-            cell.commentNumber.text = "\(self.json[indexPath.row]["numComments"])"
-            cell.viewNumber.text = "\(self.json[indexPath.row]["numViews"])"
-            cell.voteNumber.text = "\(self.json[indexPath.row]["numVotes"])"
-            cell.layoutIfNeeded()
-            cell.palettesView.subviews.map{$0.removeFromSuperview()}
-            cell.selectionStyle = UITableViewCellSelectionStyle.none
-            
-            // 数据传递
-            cell.palettesView.colorArray = transJSONToString(json: self.json[indexPath.row]["colors"].arrayValue)
-            cell.palettesView.widthArray = transJSONToString(json: self.json[indexPath.row]["colorWidths"].arrayValue)
-            cell.json = json[indexPath.row]
+            if isHotPage {
+                cell.palettesLabel.text = String(describing:self.hotJson[indexPath.row]["title"])
+                cell.commentNumber.text = "\(self.hotJson[indexPath.row]["numComments"])"
+                cell.viewNumber.text = "\(self.hotJson[indexPath.row]["numViews"])"
+                cell.voteNumber.text = "\(self.hotJson[indexPath.row]["numVotes"])"
+                cell.layoutIfNeeded()
+                cell.palettesView.subviews.map{$0.removeFromSuperview()}
+                cell.selectionStyle = UITableViewCellSelectionStyle.none
+                
+                // 数据传递
+                cell.palettesView.colorArray = transJSONToString(json: self.hotJson[indexPath.row]["colors"].arrayValue)
+                cell.palettesView.widthArray = transJSONToString(json: self.hotJson[indexPath.row]["colorWidths"].arrayValue)
+                cell.json = hotJson[indexPath.row]
+            }else{
+                cell.palettesLabel.text = String(describing:self.json[indexPath.row]["title"])
+                cell.commentNumber.text = "\(self.json[indexPath.row]["numComments"])"
+                cell.viewNumber.text = "\(self.json[indexPath.row]["numViews"])"
+                cell.voteNumber.text = "\(self.json[indexPath.row]["numVotes"])"
+                cell.layoutIfNeeded()
+                cell.palettesView.subviews.map{$0.removeFromSuperview()}
+                cell.selectionStyle = UITableViewCellSelectionStyle.none
+                
+                // 数据传递
+                cell.palettesView.colorArray = transJSONToString(json: self.json[indexPath.row]["colors"].arrayValue)
+                cell.palettesView.widthArray = transJSONToString(json: self.json[indexPath.row]["colorWidths"].arrayValue)
+                cell.json = json[indexPath.row]
+            }
             cell.palettesView.layColorBlock()
             
             cell.contentView.frame.origin.x += 100
@@ -190,6 +238,9 @@ class PalettesTableViewController: UIViewController, UITableViewDelegate, UITabl
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if isHotPage {
+            return self.hotJson.count
+        }
         return self.json.count
     }
     
@@ -473,7 +524,7 @@ class SearchViewController: UIViewController,UITextFieldDelegate {
     func getUrl() {
         urlForPalette = "http://www.colourlovers.com/api/palettes?showPaletteWidths=1&format=json&numResults=20&keywordExact=1&keywords="
         urlForPattern = "http://www.colourlovers.com/api/patterns?format=xml&numResults=20&keywordExact=1&keywords="
-        urlForHotPalette = "等待小伙伴们啊！"
+        urlForHotPalette = "https://leancloud.cn/1.1/functions/Recommend"
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showPalettes"{
@@ -491,20 +542,21 @@ class SearchViewController: UIViewController,UITextFieldDelegate {
             if let destinationView = segue.destination as? PalettesTableViewController {
                 destinationView.url = self.urlForHotPalette
                 destinationView.title = "Hot"
-            }
+                destinationView.isHotPage = true
         }
         
         
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
+    func viewWillDisappear(_ animated: Bool) {
         textField.resignFirstResponder()
     }
 }
 
-
+}
 //  Classes of detailView
 class PalettesDetailViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    let universalUser = AppUser.getInstance()
     var flag = false
     var paletteColorArray = [String]()
     var paletteWidthsArray = [String]()
@@ -614,6 +666,64 @@ class PalettesDetailViewController: UIViewController,UITableViewDelegate,UITable
             thing.append(person)
         } catch let error as NSError {
             print("Could not save \(error), \(error.userInfo)")
+        }
+        
+        if universalUser.hasBeenLogin() {
+            let headers = [
+                "X-LC-Id": "sXvWPWGXozgs0abUMsuL8143-gzGzoHsz",
+                "X-LC-Key": "5vRTX6YB4wD3c06N569NIsh9"
+            ]
+            let parameters: Parameters = [
+                "Color_ID": "\(json["id"])",
+                "JSON": "\(json)",
+                "User_ID": "\(universalUser.getUsername())"
+            ]
+            
+            var alert: UIAlertView = UIAlertView(title: "Uploading...", message: "", delegate: nil, cancelButtonTitle: "Cancel");
+            alert.frame.size.width = 170
+            
+            
+            var loadingIndicator: UIActivityIndicatorView = UIActivityIndicatorView(frame: CGRect.init(x: 50, y: 10, width: 37, height: 37)) as UIActivityIndicatorView
+            loadingIndicator.center = self.view.center;
+            loadingIndicator.hidesWhenStopped = true
+            loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+            alert.setValue(loadingIndicator, forKey: "accessoryView")
+            loadingIndicator.startAnimating()
+            
+            alert.show();
+            
+            Alamofire.request("https://api.leancloud.cn/1.1/classes/Collection", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers).responseJSON {response in
+                
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    print(json)
+                    print(json["result"])
+                    
+                    if json["result"] != nil  {
+                        
+                        let alertSheet = UIAlertController(title: "SUCCESS", message: nil, preferredStyle: .alert)
+                        alertSheet.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+                        self.present(alertSheet, animated: true, completion: nil)
+                    }else{
+                        let alertSheet = UIAlertController(title: "SUCCESS", message: nil, preferredStyle: .alert)
+                        alertSheet.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+                        self.present(alertSheet, animated: true, completion: nil)
+                    }
+                    
+                case .failure(let error):
+                    print("!!!!!!!!!!")
+                    let alertSheet = UIAlertController(title: "SUCCESS", message: nil, preferredStyle: .alert)
+                    alertSheet.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+                    self.present(alertSheet, animated: true, completion: nil)
+                }
+            }
+            alert.dismiss(withClickedButtonIndex: 0, animated: true)
+        }else{
+            let alertSheet = UIAlertController.init(title: "Please Login", message: nil, preferredStyle: .alert)
+            alertSheet.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
+            present(alertSheet, animated: true, completion: nil)
+            
         }
     }
     override func viewDidLoad() {
